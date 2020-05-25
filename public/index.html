@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="docChangeImg()">转化</button>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    window.onload = function () {
+        var socket = io.connect('https://192.168.1.140:4000');
+
+        let data = {
+            meetingId: '111111111111',
+            name:'cl',
+            nube:'22222'
+        };
+
+        socket.emit('joinMeeting', data);
+
+        socket.on('onJoinMeeting', function (res) {
+            console.info(res)
+        });
+
+        socket.on('displacement', function (res) {
+            console.info(res)
+        })
+        // function docChangeImg() {
+        //     let data = {
+        //         name: 'cl',
+        //         nube: '62000334',
+        //         id: Math.random(),
+        //         filename: "北欧简约图册(1).pdf",
+        //         file: {
+        //             Project: "docs-share",
+        //             SrcUri: "oss://docsshare/docs-share/ltj/北欧简约图册(1).pdf",
+        //             TgtType: "png",
+        //             TgtUri: "oss://docsshare/docs-share/ltj/北欧简约图册(1)/pic",
+        //         }
+        //     };
+        //
+        //     socket.emit('docChangeImg', data)
+        // }
+        //
+        // socket.on('onDocChangeImg', (data) => {
+        //     let obj = {
+        //         name: 'cl',
+        //         nube: '62000334',
+        //     };
+        //     console.info(data)
+        //     // socket.emit('getDocList', obj)
+        // });
+        //
+        // socket.on('onGetDocList', (data) => {
+        //     console.info(data)
+        // })
+    };
+
+</script>
+</html>
